@@ -1,0 +1,15 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "description": "debug.html 提供调试器功能",
+  "main": "code1.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
