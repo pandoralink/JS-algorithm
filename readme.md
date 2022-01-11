@@ -12,17 +12,21 @@ debug.html 提供调试器功能
 
 **提示**
 
+[88. 合并两个有序数组](./code1.js)
+
 贪心，两个递增序数组，从后往前遍历，每次都取最大值填充，边缘值 -1 指两个数组之一已经遍历完（填充完），只需填充另一个数组
 
-[合并两个有序数组](./code1.js)
+[53. 最大子序和](./code2.js)
 
 动态规划，需要设立求解公式，此题时每次都和上一次比较并得出最大值
 
-[最大子序和](./code2.js)
+[112. 路径总和](./code15.js)
+
+[415. 字符串相加](./code4.js)
 
 从尾部相加，进位加 1，可以先把字符串反转，不过开销太大，官方的解法更好，更优雅
 
-[415. 字符串相加](./code4.js)
+<-----------------分割线--------------------->
 
 1. 利用栈实现反转（JS Array）
 2. 迭代反转，每次结束都把当前指向节点指向 next，注意 curr 和 next 在结束时是同一指向，而 prev 的指向节点会与 curr 断开
@@ -40,9 +44,14 @@ debug.html 提供调试器功能
 ```js
 // one
 let stackTop = stack[stack.length - 1];
-if (stackTop + 1 === s.charCodeAt(i) || stackTop + 2 === s.charCodeAt(i)){}
+if (stackTop + 1 === s.charCodeAt(i) || stackTop + 2 === s.charCodeAt(i)) {
+}
 // two
-if (stack[stack.length - 1] + 1 === s.charCodeAt(i) || stack[stack.length - 1] + 2 === s.charCodeAt(i)){}
+if (
+  stack[stack.length - 1] + 1 === s.charCodeAt(i) ||
+  stack[stack.length - 1] + 2 === s.charCodeAt(i)
+) {
+}
 ```
 
 one 的写法和 two 的写法区别在哪？one 的写法多了声明，two 的写法多了 2 次计算（假设 stack.length - 1 和 stack 取值算 2 次）
@@ -86,8 +95,7 @@ one 的写法和 two 的写法区别在哪？one 的写法多了声明，two 的
  * @param {number[]} prices
  * @return {number}
  */
- var maxProfit = function(prices) {
-};
+var maxProfit = function (prices) {};
 ```
 
 [94. 二叉树的中序遍历](./code13.js)
@@ -97,12 +105,25 @@ one 的写法和 two 的写法区别在哪？one 的写法多了声明，two 的
 [5952. 环和杆](./week/code3.js)
 
 1. 傻子解法，Map 保存所有的可能数组索引，然后对每个遇到的索引进行字符串累加，最后循环遍历判断是否包含 RGB
+
 ```
 B0R0 -> 0 : BR
 ```
+
 2. 位运算之把我秀麻了，虽然很多课都学过二进制，但没想到代码中也可以使用，解题思路位运算，设 RGB 为三位二进制，如果有 RGB 中三个字母中任意个出现就进行或运算，如 R = 001, G = 010, B = 100，设初值为 0，遍历完后，值为 7 说明包含 RGB
+
 ```
 000 | 001 = 001
 001 | 100 = 101
 ```
 
+
+*进入中等题了哦兄弟们*
+
+# 3. 无重复字符的最长子串
+
+这题好像做过，先避开先
+
+# 129. 求根节点到叶节点数字之和
+
+# 165. 比较版本号
