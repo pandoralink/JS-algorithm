@@ -127,6 +127,39 @@ _进入中等题了哦兄弟们_
 
 [165. 比较版本号](./code17.js)
 
+[889. 根据前序和后序遍历构造二叉树](./code18.js)
+
+[652. 寻找重复的子树](./code19.js)
+
+[230. 二叉搜索树中第 K 小的元素](./code20.js)
+
+[98. 验证二叉搜索树](./code21.js)
+
+二叉搜索树存在两个框架，一是运用二叉搜索树本身中序遍历，得到递增遍历结果的框架，二是根据 root.val 的结果去选择遍历右子树还是左子树
+
+```js
+// 一
+
+traverse(TreeNode root) {
+  if (root == null) return;
+  traverse(root.left);
+  // 中序遍历代码位置
+  traverse(root.right);
+}
+
+// 二
+
+BST(TreeNode root, int target) {
+  if (root.val == target)
+    // 找到目标，做点什么
+  if (root.val < target)
+    BST(root.right, target);
+  if (root.val > target)
+    BST(root.left, target);
+}
+
+```
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
@@ -141,6 +174,6 @@ _很多「大佬」，你问他怎么入门算法，他告诉你看《算法导�
 
 所以还是乖乖按照 labuladong 的文章去刷题吧
 
-[889. 根据前序和后序遍历构造二叉树](./code18.js)
+# leetcode 的 BUG
 
-[652. 寻找重复的子树](./code19.js)
+leetcode 存在 bug，最后一次提交记录，在前端会直接使用`当前时间`，`当前时间`是什么意思？当你提交一次后，切换导航栏，比如 `题目描述` -> `提交记录`，最新一次的提交结果的提交时间会随着本地时间不断变化，但刷新后就不会出现这种情况，后端应该是已经拿到了时间戳并记录在了数据库。

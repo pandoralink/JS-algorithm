@@ -43,7 +43,20 @@ while (left < right) {
 
 ![IMG](https://gimg2.baidu.com/image_search/src=http%3A%2F%2Finews.gtimg.com%2Fnewsapp_bt%2F0%2F13966720318%2F1000.jpg&refer=http%3A%2F%2Finews.gtimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644670548&t=8c1b20b7b89179436c8fd36aa8b1a7f1)
 
-仔细看，排序逻辑中，外部循环是要满足 left >= right 才能够退出，那么有没有可能，循环内部的 left 和 right 一直没有移动呢？因为我们内部的两个循环满足条件其实也满`苛刻`，举一个例子
+仔细看，排序逻辑中，外部循环是要满足 left >= right 才能够退出，那么有没有可能，循环内部的 left 和 right 一直没有移动呢？因为我们内部的两个循环满足条件其实也满`苛刻`，举一个例子，如果左右指针的循环是下面这样的
+
+```js
+while (left < right && nums[right] > pivot) {
+  right = right - 1;
+}
+nums[left] = nums[right];
+while (left < right && nums[left] < pivot) {
+  left = left + 1;
+}
+nums[right] = nums[left];
+```
+
+对于下面这个例子，left 和 right 将不会移动
 
 ```js
 // 下面这个函数在没有大于等于的情况下会导致死循环
