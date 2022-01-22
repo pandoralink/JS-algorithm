@@ -162,6 +162,12 @@ BST(TreeNode root, int target) {
 
 [96. 不同的二叉搜索树](./code22.js)
 
+[1373. 二叉搜索子树的最大键值和](./code23.js)
+
+[297. 二叉树的序列化与反序列化](./code24.js)
+
+[双周赛 5972. 统计隐藏数组数目](./week/week6/code1.js)
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
