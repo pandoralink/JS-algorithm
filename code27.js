@@ -28,38 +28,40 @@
  * @constructor
  * @param {NestedInteger[]} nestedList
  */
- var NestedIterator = function(nestedList) {
+var NestedIterator = function (nestedList) {
   this.res = nestedList;
 };
 
-
 /**
-* @this NestedIterator
-* @returns {boolean}
-*/
-NestedIterator.prototype.hasNext = function() {
-  while(this.res.length > 0 && !this.res[0].isInteger()) {
-      let nums = [];
-      const list = this.res.shift().getList();
-      for(let i = 0; i < list.length; i++) {
-          nums.push(list[i]);
-      }
-      this.res.unshift(...nums);
+ * @this NestedIterator
+ * @returns {boolean}
+ */
+NestedIterator.prototype.hasNext = function () {
+  // 明明只需要一个，为什么不是 if 而是 while
+  // 因为我们需要保证节点第一个不是列表，那么对于 [[3]]
+  // 列表嵌套列表的情况就需要再进一次循环，所以应该使用 while
+  while (this.res.length > 0 && !this.res[0].isInteger()) {
+    let nums = [];
+    const list = this.res.shift().getList();
+    for (let i = 0; i < list.length; i++) {
+      nums.push(list[i]);
+    }
+    this.res.unshift(...nums);
   }
-  
+
   return this.res.length > 0;
 };
 
 /**
-* @this NestedIterator
-* @returns {integer}
-*/
-NestedIterator.prototype.next = function() {
- return this.res.shift().getInteger();
+ * @this NestedIterator
+ * @returns {integer}
+ */
+NestedIterator.prototype.next = function () {
+  return this.res.shift().getInteger();
 };
 
 /**
-* Your NestedIterator will be called like this:
-* var i = new NestedIterator(nestedList), a = [];
-* while (i.hasNext()) a.push(i.next());
-*/
+ * Your NestedIterator will be called like this:
+ * var i = new NestedIterator(nestedList), a = [];
+ * while (i.hasNext()) a.push(i.next());
+ */
