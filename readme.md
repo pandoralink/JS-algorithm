@@ -174,6 +174,8 @@ BST(TreeNode root, int target) {
 
 [341. 扁平化嵌套列表迭代器](./code27.js)
 
+[145. 二叉树的后序遍历](./code28.js)
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
