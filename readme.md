@@ -204,8 +204,23 @@ BST(TreeNode root, int target) {
 
 [108. 将有序数组转换为二叉搜索树](./code/code34.js)
 
+[530. 二叉搜索树的最小绝对差](./code/code35.js)
 
+[404. 左叶子之和](./code/code36.js)
 
+[563. 二叉树的坡度](./code/code37.js)
+
+[572. 另一棵树的子树](./code/code38.js)
+
+[617. 合并二叉树](./code/code39.js)
+
+[653. 两数之和 IV - 输入 BST](./code/code40.js)
+
+[671. 二叉树中第二小的节点](./code/code41.js)
+
+[703. 数据流中的第 K 大元素](./code/code42.js)
+
+这题还没有完全掌握，要再看看
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
