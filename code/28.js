@@ -1,4 +1,4 @@
-import { generateTreeByTruthyQueue, TreeNode } from "./lib/Tree.js";
+import { generateTreeByTruthyQueue, TreeNode } from "../lib/Tree.js";
 
 /**
  * 递归后序遍历
