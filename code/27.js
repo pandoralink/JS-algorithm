@@ -65,3 +65,27 @@ NestedIterator.prototype.next = function () {
  * var i = new NestedIterator(nestedList), a = [];
  * while (i.hasNext()) a.push(i.next());
  */
+
+// 解法二，一次性遍历完
+var NestedIterator = function (nestedList) {
+  const res = [];
+  const traverse = (root) => {
+    for (const child of root) {
+      if (child.isInteger()) {
+        res.push(child.getInteger());
+      } else {
+        traverse(child.getList());
+      }
+    }
+  };
+  traverse(nestedList);
+  this.res = res;
+};
+
+NestedIterator.prototype.hasNext = function () {
+  return this.res.length > 0;
+};
+
+NestedIterator.prototype.next = function () {
+  return this.res.shift();
+};

@@ -230,6 +230,12 @@ BST(TreeNode root, int target) {
 
 [1022. 从根到叶的二进制数之和](./code/46.js)
 
+[303. 区域和检索 - 数组不可变](./article/article-8.md)
+
+[304. 二维区域和检索 - 矩阵不可变](./article/article-9.md)
+
+[167. 两数之和 II - 输入有序数组](./article/article-12.md)
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
