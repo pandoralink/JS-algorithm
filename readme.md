@@ -162,13 +162,13 @@ BST(TreeNode root, int target) {
 
 [96. 不同的二叉搜索树](./code22.js)
 
-[1373. 二叉搜索子树的最大键值和](./code23.js)
+[1373. 二叉搜索子树的最大键值和](./code/23.js)
 
-[297. 二叉树的序列化与反序列化](./code24.js)
+[297. 二叉树的序列化与反序列化](./code/24.js)
 
 [双周赛 5972. 统计隐藏数组数目](./week/week6/code1.js)
 
-[236. 二叉树的最近公共祖先](./code25.js)
+[236. 二叉树的最近公共祖先](./code/25.js)
 
 [222. 完全二叉树的节点个数](./code/26.js)
 
@@ -235,6 +235,8 @@ BST(TreeNode root, int target) {
 [304. 二维区域和检索 - 矩阵不可变](./article/article-9.md)
 
 [167. 两数之和 II - 输入有序数组](./article/article-12.md)
+
+[76. 最小覆盖子串](article/article-13.md)
 
 # 写在最后
 
