@@ -88,7 +88,7 @@ var corpFlightBookings = function (bookings, n) {
 
 ## 差分数组
 
-这个差分数组指的是，将原数组转换成 `newNum[i] = newNum[i] - newNum[i-1]`，改变如下
+这个差分数组指的是，将原数组转换成 `diff[i] = num[i] - num[i-1]`，改变如下
 
 ```js
 const num = [1, 2, 3, 4];
@@ -100,25 +100,25 @@ diff[0] = num[0];
 for (let i = 1; i < num.length; i++) {
   diff[i] = num[i] - num[i - 1];
 }
-console.log(num); // [1, 2, 3, 4]
-console.log(diff); // [1,-1,-1,-1]
+console.log(num); //  [1, 2, 3, 4]
+console.log(diff); // [1, 1, 1, 1]
 ```
 
 `diff[0]` 和 `num[0]` 相同的原因不仅仅是因为上面那个公式需要 `i >= 1`，还因为我们需要通过 `diff` 还原出 `num`
 
 ```js
-// diff = [1,-1,-1,-1]
+// diff = [1, 1, 1, 1]
 const num = new Array(diff.length).fill(0);
 // 因为两者本来就相等，所以还原时需要 `还` 回去
 num[0] = diff[0];
 
 for (let i = 1; i < num.length; i++) {
-  num[i] = num[i] + diff[i];
+  num[i] = num[i - 1] + diff[i];
   // 因为 diff[i] === num[i] - num[i - 1], 所以上式等于
   // num[i] = num[i - 1] + num[i] - num[i - 1] = num[i]
 }
-console.log(diff); // [1,-1,-1,-1]
-console.log(num); // [1, 2, 3, 4]
+console.log(diff); // [1, 1, 1, 1]
+console.log(num); //  [1, 2, 3, 4]
 ```
 
 可是就是这个转来转去的玩意儿，它能怎么优化我们的这个航班操作呢？
@@ -129,7 +129,7 @@ console.log(num); // [1, 2, 3, 4]
 
 ```
 原数组   [1,2,3,4,5]
-差分数组 [1,-1,-1,-1,-1]
+差分数组 [1,1,1,1,1]
 
 将数组索引 1 -> 3 的元素加 3
 
@@ -141,24 +141,24 @@ console.log(num); // [1, 2, 3, 4]
 重新将上面的还原算法进行一个解构
 
 ```js
-// 原数组 num = [1,2,3,4,5]
-// 差分数组 diff = [1,2,-1,-1,-1]
+// 原数组   num  = [1,2,3,4,5]
+// 差分数组 diff = [1,4,1,1,1]
 const res = new Array(diff.length).fill(0);
-res[0] = diff[0];
+res[0] = diff[0]; // diff[0] === num[0]
 
 // 此时 diff[1] = num[1] - num[0] + 3
 // 而 diff[i] = num[i] - num[i-1]
 for (let i = 1; i < num.length; i++) {
-  res[i] = res[i - 1] + diff[i - 1];
+  res[i] = res[i - 1] + diff[i];
   // 当执行到 i = 1 时
-  // res[1] = diff[0] + diff[1] = num[0] + num[1] - num[0] + 3 = num[1] + 3
+  // res[1] = res[0] + diff[1] = num[0] + num[1] - num[0] + 3 = num[1] + 3
   // 当执行到 i = 2 时
   // res[2] = res[1] + diff[2] = num[1] + 3 + num[2] - num[1] = num[2] + 3
   // 还没看出来？继续道 i = 3
   // res[3] = res[2] + diff[3] = num[2] + 3 + num[3] - num[2] = num[3] + 3
 }
-console.log(diff); // [1,-1,-1,-1]
-console.log(num); // [1, 2, 3, 4]
+console.log(diff); // [1,4,1,1,1]
+console.log(res);  // [1,5,6,7,8]
 ```
 
 有没有看出**差分数组**的奇妙之处，只是因为某一个元素加了 `n`，这个 `n` 就能够在还原时，层层递进，不断的沿着循环往上加，当我们给 `diff[i] + 3` 等同于 `(num[i]...num[num.length - 1]) + 3`

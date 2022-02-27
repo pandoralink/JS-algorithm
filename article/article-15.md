@@ -39,7 +39,7 @@
 输出：true
 ```
 
-## 示例 4：
+## 示例 4
 
 ```
 输入：trips = [[3,2,7],[3,7,9],[8,3,9]], capacity = 11
@@ -133,3 +133,100 @@ var carPooling = function (trips, capacity) {
 说实话我是万万没想到，这个时间复杂度为 `O(n*m)` 的算法竟然也过了，看来是道水题
 
 ![IMG](../IMG/39.png)
+
+不过我们不能只是通过就完事了，其实这个算法还有这优化的空间，仔细看上面两个循环中的第二个循环
+
+```js
+for (let j = start; j < end; j++) {
+  station[j] += trips[i][0];
+}
+```
+
+它的主要目的就是一个累加的过程，累加的对象是我们的车站，对于 `trips` 中的每一个元素跨过的车站区间都需要去累加，那如果有多个 `trips` 元素具有重叠部分，实际上就是重复操作了，如下
+
+![IMG](../IMG/40.png)
+
+而有一种算法可以帮助我们解决这个问题，将时间复杂度压缩在 `O(1)`，这个算法就是差分数组，差分数组能够将我们需要加的值**只加一次**，并将所加的值层层递进到数组尾部
+
+简单概述一下，差分数组的概念
+
+```
+diff[i] = num[i] - num[i-1]
+diff[0] = num[0]
+
+原数组 num    [1,2,3,4,5]
+差分数组 diff [1,1,1,1,1]
+
+将数组索引 1 -> 3 的元素加 3，可以直接在 diff[1] = diff[1] + 3, diff[3] = diff[3] - 3
+
+差分数组 diff [1,4,1,-2,1]
+将差分数组还原可得 num[1,5,6,7,5];
+```
+
+它的生成算法和还原算法如下
+
+```js
+// 生成算法
+const num = [1, 2, 3, 4, 5];
+const diff = new Array(num.length).fill(0);
+
+// 注意：diff[0] 是和 num 相同的
+diff[0] = num[0];
+
+for (let i = 1; i < num.length; i++) {
+  diff[i] = num[i] - num[i - 1];
+}
+
+// 还原算法
+// 原数组   num  = [1,2,3,4,5]
+// 差分数组 diff = [1,4,1,1,1]
+const res = new Array(diff.length).fill(0);
+res[0] = diff[0]; // diff[0] === num[0]
+
+// 此时 diff[1] = num[1] - num[0] + 3
+// 而 diff[i] = num[i] - num[i-1]
+for (let i = 1; i < num.length; i++) {
+  res[i] = res[i - 1] + diff[i];
+  // 当执行到 i = 1 时
+  // res[1] = res[0] + diff[1] = num[0] + num[1] - num[0] + 3 = num[1] + 3
+  // 当执行到 i = 2 时
+  // res[2] = res[1] + diff[2] = num[1] + 3 + num[2] - num[1] = num[2] + 3
+}
+```
+
+所以依靠**差分数组**我们可以消去一个 `for` 循环，让一个区间的操作变成两次操作，使得时间复杂度达到 `O(n)`
+
+**差分数组**的解法如下
+
+```js
+var carPooling = function (trips, capacity) {
+  // 车站初始值全为 0，差分数组和车站初始数组相同
+  const station = new Array(2000).fill(0);
+  for (let i = 0; i < trips.length; i++) {
+    const start = trips[i][1];
+    const end = trips[i][2];
+    station[start] += trips[i][0];
+    station[end] -= trips[i][0];
+  }
+  // 将差分数组还原
+  for (let i = 1; i < station.length; i++) {
+    station[i] += station[i - 1];
+    if (station[i] > capacity) {
+      return false;
+    }
+  }
+  // 注意不要漏掉了差分数组索引为 0 的校验
+  if (station[0] > capacity) {
+    return false;
+  }
+  return true;
+};
+```
+
+# 总结
+
+我们真的需要**差分数组**吗？单靠 `leetcode` 上提交的性能校验看，优化后的算法如下
+
+![IMG](../IMG/41.png)
+
+其实和暴力法区别不大，有些情况下，差分数组可能还要弱于暴力法，因为你可能需要生成**差分数组**和还原**差分数组**，这两者的时间复杂度都是 `O(n)`，再加上遍历车站也要 `O(n)` 所以，差分数组解法的时间复杂度至少要 `O(3*n)`，而暴力解法只要乘客平均搭乘车站区间小于 `3`，暴力法的时间都会小于差分数组，所以算法还是要考虑场景的，暴力穷举也有春天
