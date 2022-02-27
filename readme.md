@@ -238,6 +238,10 @@ BST(TreeNode root, int target) {
 
 [76. 最小覆盖子串](article/article-13.md)
 
+[leetcode_560. 和为 K 的子数组](article/article-14.md)
+
+[1094. 拼车](article/article-15.md)
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
