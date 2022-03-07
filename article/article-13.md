@@ -83,6 +83,8 @@ s.slice(left, right + 1).match(t);
 
 然后再去维护一个窗口中 `t` 字符出现的次数哈希表（用 `JS` 动态生成一个键值对也行），这个哈希表假设为 `windowCount`，当我们的左右指针移动的时候就去维护这个哈希表，当这个 `need` 和 `windowCount` 里面的键值对内容相同的时候，就可以去缩小窗口了，其过程如下
 
+_注：`windowCount` 并非指滑动窗口本身，`left` 和 `right` 这两个变化的索引才是滑动窗口，而 `windowCount` 是记录滑动窗口中包含 `need` 中记录字符的个数_
+
 ![IMG](../IMG/31.png)
 
 由于我们的 `need` 和 `windowCount` 都是一个引用类型，直接比较它们肯定不行的，因此再去维护一个变量，判定它们是否相等，假设这个变量为 `valid`，这个变量维护时，以 `windowCount` 中与 `need` 中对应键值对相等数量为准，如下

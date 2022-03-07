@@ -244,6 +244,10 @@ BST(TreeNode root, int target) {
 
 [19. 删除链表的倒数第 N 个结点](article/article-16.md)
 
+[141. 环形链表](article/article-17.md)
+
+[142. 环形链表 II](article/article-17.md)
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
