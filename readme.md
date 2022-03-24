@@ -262,6 +262,8 @@ BST(TreeNode root, int target) {
 
 [5. 最长回文子串](article/article-19.md)
 
+[206. 反转链表](article/article-19.md)
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
