@@ -265,6 +265,9 @@ BST(TreeNode root, int target) {
 [206. 反转链表](article/article-20.md)
 
 [1. 两数之和](article/article-21.md)
+
+[3. 三数之和](article/article-22.md)
+
 # 写在最后
 
 像一般的人总是说刷够 leetcode 多少题就能够进大厂，我觉得用 labuladong 的一句话可以完美复述
