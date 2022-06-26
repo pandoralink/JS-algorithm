@@ -1,0 +1,23 @@
+<body>
+  <div
+    class="demo"
+    style="
+      transform: translate(0, 0);
+      height: 200px;
+      width: 200px;
+      padding: 10px;
+      border: 10px solid black;
+      overflow: auto;
+    "
+  >
+    <div style="height: 50px; width: 800px; background: black"></div>
+    <div class="count" style="position: sticky; left: 0">scrollLeft: 0</div>
+  </div>
+</body>
+<script>
+  const div = document.querySelector(".demo");
+  const count = document.querySelector(".count");
+  div.addEventListener("scroll", () => {
+    count.innerHTML = "scrollLeft: " + parseInt(div.scrollLeft);
+  });
+</script>
